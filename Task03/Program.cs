@@ -8,28 +8,28 @@ using static System.Console;
 Clear();
 Write("Введите размер массива: ");
 string[] parameters = ReadLine()!.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-int[] array = GetArray(int.Parse(parameters[0]), 1, 100);
+double[] array = GetArray(int.Parse(parameters[0]), 1, 1000);
 PrintArray(array);
 WriteLine();
-Write($"Разница между max и min элементами: {GetDiff(array)}");
+Write($"Разница между max и min элементами: {GetDiff(array):f2}");
 
 
 
-int[] GetArray(int size, int minValue, int maxValue)
+double[] GetArray(int size, int minValue, int maxValue)
 {
-    int[] resultArray = new int[size];
+    double[] resultArray = new double[size];
     Random rnd = new Random();
     for (int i = 0; i < size; i++)
     {
-        resultArray[i] = rnd.Next(minValue, maxValue + 1);
+        resultArray[i] = (double)rnd.Next(minValue, maxValue + 1) / 10;
     }
     return resultArray;
 }
-int GetDiff(int[] inArray)
+double GetDiff(double[] inArray)
 {
-    int max = inArray[0];
-    int min = inArray[0];
-    int diff = 0;
+    double max = inArray[0];
+    double min = inArray[0];
+    double diff = 0;
     for (int i = 0; i < inArray.Length; i++)
     {
         if (max < inArray[i])
@@ -45,14 +45,14 @@ int GetDiff(int[] inArray)
     return diff;
 }
 
-void PrintArray(int[] inArray)
+void PrintArray(double[] inArray)
 {
     Write("Заданный массив: [");
     for (int i = 0; i < inArray.Length - 1; i++)
     {
-        Write($"{inArray[i]},");
+        Write($"{inArray[i]:f1} ");
     }
-    Write($"{inArray[inArray.Length - 1]}]");
+    Write($"{inArray[inArray.Length - 1]:f1}]");
 }
 
 
